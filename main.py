@@ -66,10 +66,12 @@ async def on_message(message):
           #each counterpick is pulled from u.gg
           counters.insert(0, name.text)
           #because u.gg lists their champions backwards i've created an array so that they are in order
-    if len(counters) == 10:
-      for t in range(0, len(counters)):
-        await message.channel.send(counters[t])
-    #the counterpicks are then printed onto discord
+    embedVar = discord.Embed(title = "COUNTER PICK FOR " + fix.upper(), description = "", color = 0xFF0505)
+    for nums in range(0, 10):
+      embedVar.add_field(name="Counterpick #" + str(nums + 1), value=counters[nums], inline=False)
+
+    await message.channel.send(embed=embedVar)
+    #the counterpicks are then printed onto discord in like a chart form (think about what the help part looks like)
     counters.clear()
     #the counter array is then cleared for its next use 
   
